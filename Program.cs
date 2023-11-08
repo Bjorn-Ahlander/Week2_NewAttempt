@@ -1,40 +1,63 @@
-﻿    
-    using System;
-    using System.Xml.Linq;
+﻿
+List<Product> items = new List<Product>();
+Console.WriteLine("Enter q to show list");
 
-    Console.WriteLine("skriv kategori eller avsluta med q: ");
-    string category = Console.ReadLine();
-
-    Console.WriteLine("vara: ");
-    string vara = Console.ReadLine();
-
-    Console.WriteLine("pris: ");
-    string price = Console.ReadLine();
-
-    List<Prod> prods = new List<Prod>();
-    Prod prod1 = new Prod(category, vara, price);
-    prods.Add(prod1);
-
-    prods.Add.(new Prod(category, vara, price));
-
-    Console.WriteLine("Produkter");
-    Console.WriteLine("Category".PadRight(10) + "Vara".PadRight(10) + "Pris".PadRight(10));
-
-    foreach (Prod prod1 in prods)
+while (true)
+{
+    // Get Category
+    Console.Write("Input Category: ");
+    string categoryInput = Console.ReadLine();
+    if (categoryInput.ToLower().Trim() == "q")
     {
-        Console.WriteLine(prod.Category.PadRight(10) + prod.Vara.PadRight(10) + prod.Pris.PadRight(10));
+        break;
+    }
+    // Get Product Name
+    Console.Write("Input Product: ");
+    string productInput = Console.ReadLine();
+    if (productInput.ToLower().Trim() == "q")
+    {
+        break;
     }
 
-class Prod
-{
-    public Prod(string category, string vara, string price)
+    // Get Price
+
+    Console.Write("Input Price: ");
+    string priceInput = Console.ReadLine();
+    if (priceInput.ToLower().Trim() == "q")
     {
-        public Category = category;
-        public Vara = vara;
-        public Pris = price;
+        break;
+    }
+    bool isValid = int.TryParse(priceInput, out int price);
+    if (isValid)
+    {
+        Product product = new Product(categoryInput, productInput, price);
+        items.Add(product);
+        Console.WriteLine("The product was added to list");
+    }
+
+}
+
+Console.WriteLine("All List");
+foreach (var item in items)
+{
+    Console.WriteLine(item.Category.PadRight(20) + item.ProductName.PadRight(20) + item.Price);
+}
+
+
+
+class Product
+{
+    public Product(string category, string productName, int price)
+    {
+        Category = category;
+        ProductName = productName;
+        Price = price;
     }
 
     public string Category { get; set; }
-    public string Vara { get; set; }
-    public string Pris { get; set; }
+    public string ProductName { get; set; }
+    public int Price { get; set; }
+
 }
+//inskick till GIT-hub
+//sodfhdj
